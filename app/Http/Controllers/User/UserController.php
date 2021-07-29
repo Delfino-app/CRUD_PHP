@@ -33,7 +33,7 @@ class UserController extends Controller
 
         $validator = Validator::make($request->all(), [
             "nome" => "required|string",
-            "e-mail" => "required|string",
+            "e_mail" => "required|string",
             "password" => "required|string",
             "data_de_nascimento" => "date",
         ]);
@@ -49,10 +49,10 @@ class UserController extends Controller
                 "message" => "A senha deve ter até 8 caracteres..."
             ],200);
 
-        if(count(User::where("e-mail", $request["e-mail"])->get()) > 0)
+        if(count(User::where("e_mail", $request["e_mail"])->get()) > 0)
             return response()->json([
                 "status" => "Info",
-                "message" => "E-mail já registrado..."
+                "message" => "e_mail já registrado..."
             ],200);
 
 
@@ -81,7 +81,7 @@ class UserController extends Controller
 
         $validator = Validator::make($request->all(), [
             "nome" => "string",
-            "e-mail" => "string",
+            "e_mail" => "string",
             "password" => "string",
             "data_de_nascimento" => "date",
         ]);
@@ -99,13 +99,13 @@ class UserController extends Controller
                 "message" => "Usuário não encontrado..."
             ],404);
         
-        //E-mail Verify
-        if((isset($request["e-mail"])) && (!empty($request["e-mail"])))
-            $check_email = User::where("e-mail",$request["e-mail"])->get();
+        //e_mail Verify
+        if((isset($request["e_mail"])) && (!empty($request["e_mail"])))
+            $check_email = User::where("e_mail",$request["e_mail"])->get();
             if((isset($check_email[0])) && ($check_email[0]->id != $user->id)){
                 return response()->json([
                     "status" => "Info",
-                    "message" => "E-mail já registrado..."
+                    "message" => "e_mail já registrado..."
                 ],200);
             }
                 
