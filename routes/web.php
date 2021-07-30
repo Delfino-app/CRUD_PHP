@@ -19,6 +19,7 @@ Route::get('/', function () {
     $lista = json_decode(User::all());
 
     return view('home', ['lista' => $lista??[]]);
+
 })->name('home');
 
 Route::get('/novo', function(){

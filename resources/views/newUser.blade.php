@@ -37,20 +37,8 @@
 @endsection
 @section('add-js')
     <script src="{{asset('js/plugin/jQuery-Mask/src/jquery.mask.js')}}"></script>
-    <script src="{{asset('js/newUser/index.js')}}" type="module"></script>
     <script src="{{asset('js/plugin/jquery-validation/dist/jquery.validate.js')}}"></script>
 	<script src="{{asset('js/plugin/jquery-validation/dist/additional-methods.js')}}"></script>
-	<script>
-        jQuery.extend(jQuery.validator.messages, {
-            required: "Campo obrigatório.",
-            email: "Insira um endereço de e-mail válido",
-            date: "Insira uma data válida.",
-            number: "Insira um número válido.",
-            maxlength: jQuery.validator.format("Deve tera até {0} caracteres."),
-            minlength: jQuery.validator.format("Deve ter no mínimo {0} caracteres."),
-        });
-        $(document).ready(function() {
-            $("#formulario").validate();
-        });
-	</script>
+    <script src="{{asset('js/User/new.js')}}" type="module"></script>
+    @include('pages._includes.validate')
 @endsection

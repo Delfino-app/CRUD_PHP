@@ -35,7 +35,6 @@ class UserController extends Controller
             "nome" => "required|string",
             "e_mail" => "required|string",
             "password" => "required|string",
-            "data_de_nascimento" => "date",
         ]);
 
         if($validator->fails()){
@@ -60,7 +59,11 @@ class UserController extends Controller
 
             $senha_hash = password_hash($request["password"],PASSWORD_DEFAULT);
 
-            $newUser = User::create(array_merge($validator->validated(),["senha" => $senha_hash]));
+            $newUser = User::create(array_merge($validator->validated(),
+            [
+                "senha" => $senha_hash,
+                "data_de_nascimento" =>$request->data_de_nascimento??null
+            ]));
 
             return response()->json([
                 "status" => "Ok",
@@ -82,8 +85,6 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             "nome" => "string",
             "e_mail" => "string",
-            "password" => "string",
-            "data_de_nascimento" => "date",
         ]);
 
         if($validator->fails()){
@@ -113,7 +114,6 @@ class UserController extends Controller
 
             //Password Hash
             if((isset($request["password"])) && (!empty($request["password"]))){
-
                 if(Str::length($request["password"]) != "8")
                     return response()->json([
                         "status" => "Info",
@@ -121,7 +121,11 @@ class UserController extends Controller
                     ],200);
 
                 $senha_hash = password_hash($request["password"],PASSWORD_DEFAULT);
-                $user->update(array_merge($validator->validated(),["senha" => $senha_hash]));
+                $user->update(array_merge($validator->validated(),
+                [
+                    "senha" => $senha_hash,
+                    "data_de_nascimento" => $request->data_de_nascimento
+                ]));
             }
             else{
 
@@ -137,7 +141,7 @@ class UserController extends Controller
            
             return response()->json([
                 "status" => "error",
-                "message" => "Houve um erro inisperado. Tente mais tarde...",
+                "message" => $th,
             ],400);
         }           
     }
