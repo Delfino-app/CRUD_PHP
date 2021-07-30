@@ -21,7 +21,7 @@
                     </div>
                     <div class="col-lg-12">
                         <hr>
-                        <a href="#" class="float-right btn btn-primary btn-sm">
+                        <a href="{{route('new.user')}}" class="float-right btn btn-primary btn-sm">
                             <i class="fa fa-plus-circle"></i> Novo Usuário
                         </a>
                     </div>

@@ -19,4 +19,20 @@ Route::get('/', function () {
     $lista = json_decode(User::all());
 
     return view('home', ['lista' => $lista??[]]);
-});
+})->name('home');
+
+Route::get('/novo', function(){
+
+    return view('newUser');
+
+})->name('new.user');
+
+Route::get('/editar/{id}', function($id){
+
+    $user = json_decode(User::find($id));
+
+    if($user)
+        return view('editUser', ["user" => $user]);
+    return redirect('/404');
+
+})->name('edit.user');

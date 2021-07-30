@@ -9,6 +9,7 @@
 		<link rel="stylesheet" href="{{asset('asset/css/bootstrap.min.css')}}" type="text/css">
 		<link rel="stylesheet" href="{{asset('asset/css/font-awesome.min.css')}}" type="text/css">
 		<link rel="stylesheet" href="{{asset('asset/css/custom.css')}}" type="text/css">
+		@yield('add-css')
 	</head>
 	<body>
 		<!--Conteudo--> 
@@ -16,5 +17,8 @@
 
 		<script src="{{asset('asset/js/jquery.min.js')}}" type="text/javascript"></script>
 		<script src="{{asset('asset/js/bootstrap.min.js')}}" type="text/javascript"></script>
+
+		@yield('add-js')
+
 	</body>
 </html>

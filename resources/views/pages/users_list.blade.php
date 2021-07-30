@@ -20,7 +20,7 @@
                     {{date('d-m-Y',strtotime($user->created_at))}}
                 </td>
                 <td class="text-center" style="display: inline-flex">
-                    <a href="#" title="Editar" class="btn btn-dark btn-sm">
+                    <a href="{{route('edit.user',$user->id)}}" title="Editar" class="btn btn-dark btn-sm">
                         <i class="fa fa-edit"></i>
                     </a>
                     <span class="separator"></span>
