@@ -13,10 +13,12 @@ export default{
 
         const retorno = {status:200,message:"Ok"};
 
-        if(this.nome.value === ""){
+        if(this.type === "new"){
+            if(this.password.value === ""){
 
-            retorno.status = 400;
-            retorno.message = "Informe o nome do usuário"
+                retorno.status = 400;
+                retorno.message = "Informe a senha do usuário"
+            }
         }
 
         if(this.e_mail.value === ""){
@@ -25,12 +27,10 @@ export default{
             retorno.message = "Informe o e-mail do usuário"
         }
 
-        if(this.type === "new"){
-            if(this.password.value === ""){
+        if(this.nome.value === ""){
 
-                retorno.status = 400;
-                retorno.message = "Informe a senha do usuário"
-            }
+            retorno.status = 400;
+            retorno.message = "Informe o nome do usuário"
         }
 
         return retorno;
@@ -43,8 +43,6 @@ export default{
         const validate =  await this.validate();
 
         if(validate.status === 200){
-
-            console.log(this.data_de_nascimento.value);
 
             const data = {
                 nome:this.nome.value,
@@ -85,19 +83,18 @@ export default{
             `;
         }
     },
-    async responseSubmit(response){
+    async responseSubmit(response,display){
 
-        await ui.getdefaultElements.call(this);
         if(response.status === "Ok"){
 
-            this.displayInfo.innerHTML = `
+            display.innerHTML = `
                 <div class="alert alert-success" style="padding:5px 10px">
                     ${response.message}
                 </div>
             `;
 
             setTimeout(() =>{
-                this.displayInfo.innerHTML = `
+                display.innerHTML = `
                     <div class="alert alert-info" style="padding:5px 10px">
                         Redirecionando...
                     </div>
@@ -109,7 +106,7 @@ export default{
         }
         else if(response.status === "Info"){
 
-            this.displayInfo.innerHTML = `
+            display.innerHTML = `
                 <div class="alert alert-info" style="padding:5px 10px">
                     ${response.message}
                 </div>
@@ -117,11 +114,28 @@ export default{
         }
         else{
 
-            this.displayInfo.innerHTML = `
+            display.innerHTML = `
                 <div class="alert alert-danger" style="padding:5px 10px">
                     Houves um erro inisperado. Por favor, tente mais tarde.
                 </div>
             `; 
         }
+    },
+    //delete section
+    async startDeleteSection(){
+
+        ui.getDelteElements.call(this);
+    },
+    async deleteUser(user){
+
+        $("#modalDelete .close").click();
+
+        this.displayInfo.innerHTML = `
+            <div class="alert alert-info" style="padding:5px 10px">
+            Aguarde...
+            </div>
+        `;
+
+        routes.distroy(user);
     }
 }

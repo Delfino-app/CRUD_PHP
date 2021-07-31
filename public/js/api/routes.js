@@ -10,7 +10,7 @@ const storage = (data) => {
         data:data,
         success:function(response){
 
-            User.responseSubmit(response);
+            User.responseSubmit(response, document.getElementById("displayInfo"));
         }
     })
 }
@@ -23,7 +23,7 @@ const edit = (data,id) => {
         data:data,
         success:function(response){
             
-            User.responseSubmit(response);
+            User.responseSubmit(response,document.getElementById("displayInfo"));
         }
     })
 }
@@ -35,7 +35,7 @@ const distroy = (id) => {
         method:'DELETE',
         success:function(response){
             
-            User.responseSubmit(response);
+            User.responseSubmit(response,document.getElementById("displayInfo"));
         }
     })
 }

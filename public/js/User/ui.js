@@ -13,4 +13,17 @@ export default{
     
         this.displayInfo = document.getElementById("displayInfo");
     },
+    getDelteElements(){
+
+        this.displayInfo = document.getElementById("displayInfo");
+
+        let reference = 0;
+
+        $('.btn-delete-user').click(function(){
+
+            reference =  $(this).attr("reference");
+        });
+
+        (document.getElementById("btnDeleteModal") != null ) ? document.getElementById("btnDeleteModal").onclick = () => this.deleteUser(reference) :null;
+    }
 }

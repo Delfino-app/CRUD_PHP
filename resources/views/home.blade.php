@@ -12,7 +12,9 @@
                         </h3>
                         <hr>
                     </div>
-                    <div class="col-lg-12 p-20">
+                    <div class="col-lg-12 p-20 list-user-content">
+                        <div class="w-100" id="displayInfo">
+                        </div>
                         @if((isset($lista)) && (!empty($lista)))
                             @include('pages.users_list')
                         @else
@@ -29,4 +31,7 @@
             </div>
         </div>
     </div>
+@endsection
+@section('add-js')
+    <script src="{{asset('js/User/delete.js')}}" type="module"></script>
 @endsection

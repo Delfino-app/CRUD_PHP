@@ -20,5 +20,9 @@
     </div>
     @if(isset($user))
         <input type="hidden" name="user_reference" id="user_reference" value="{{$user->id}}">
+        <div class="form-group col-lg-6 col-sm-6">
+            <label class="col-form-label">Data de Registro</label>
+            <input type="text" class="form-control" readonly="true" value="{{date('d/m/Y',strtotime($user->created_at))}}">
+        </div>
     @endif
 </div>
