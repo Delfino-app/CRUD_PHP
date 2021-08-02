@@ -16,7 +16,7 @@ use App\Models\User;
 
 Route::get('/', function () {
 
-    $lista = json_decode(User::all());
+    $lista =  json_decode(User::orderBy('id','DESC')->get());
 
     return view('home', ['lista' => $lista??[]]);
 

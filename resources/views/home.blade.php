@@ -12,9 +12,11 @@
                         </h3>
                         <hr>
                     </div>
-                    <div class="col-lg-12 p-20 list-user-content">
+                    <div class="col-lg-12 p-20">
                         <div class="w-100" id="displayInfo">
                         </div>
+                    </div>
+                    <div class="col-lg-12 p-20 list-user-content">
                         @if((isset($lista)) && (!empty($lista)))
                             @include('pages.users_list')
                         @else

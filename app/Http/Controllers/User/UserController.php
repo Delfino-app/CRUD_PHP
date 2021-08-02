@@ -15,7 +15,7 @@ class UserController extends Controller
 
         if(!$id){
 
-            $users = User::all();
+            $users = User::orderBy('id','DESC')->get();
             return response()->json([
                 "status" => "Ok",
                 "usuarios" => $users
@@ -51,7 +51,7 @@ class UserController extends Controller
         if(count(User::where("e_mail", $request["e_mail"])->get()) > 0)
             return response()->json([
                 "status" => "Info",
-                "message" => "e_mail já registrado..."
+                "message" => "E-mail já registrado..."
             ],200);
 
 
@@ -106,7 +106,7 @@ class UserController extends Controller
             if((isset($check_email[0])) && ($check_email[0]->id != $user->id)){
                 return response()->json([
                     "status" => "Info",
-                    "message" => "e_mail já registrado..."
+                    "message" => "E-mail já registrado..."
                 ],200);
             }
                 
